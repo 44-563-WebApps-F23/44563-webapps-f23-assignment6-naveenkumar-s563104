@@ -4,5 +4,6 @@ Introduction to Java Script and DOM
 
 hosted at: https://github.com/44-563-WebApps-F23/44563-webapps-f23-assignment6-naveenkumar-s563104.git
 author.html
+44563-webapps-f23-assignment6-naveenkumar-s563104/author.html
 
 
