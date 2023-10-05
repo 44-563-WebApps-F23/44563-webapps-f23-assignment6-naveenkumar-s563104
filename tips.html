@@ -3,49 +3,68 @@
  
 <body>
 
-<h2>Getting input</h2>
+<h2>Kottidi, Naveen Kumar_shows tip amounts</h2>
+<div>
 
 <form>
     <label for="form1_amount">Enter the base amount </label>
-    <input type ="number" id="form1_amount" name="form1_amount" min=10 max=50 step=2 value=30> 
+    <input type ="number" id="form1_amount" name="form1_amount"  value=50> 
     <br>
     <br>
     <label for="form1_tip">Enter the tip percent </label>
-    <input type ="text" id="form1_tip" name="form1_tip" autofocus> <br>
+    <input type ="number" id="form1_tip" name="form1_tip" value=15 autofocus> <br>
+    <input type="button" onclick="tips()" value="Show tip"><br>
 
-    <input type="button" onclick="resolveForm()" value="Show tip">
+    <input type="radio" id="sum" name="operation" value="sum" onclick="chooseOp()" >
+    <label for="sum">Sum </label><br>
+    <input type="radio" id="diff"name="operation" value="difference" onclick="chooseOp()">
+    <label for="diff">Diff </label><br>
+    <input type="radio" id="mult"name="operation" value="product" onclick="chooseOp()">
+    <label for="mult">Mult</label>
 </form>
+<p id="result"> </p>
+</div>
+<p id="calculation"></p>
 
 <br>
 <br>
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
-
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
-
+<script>
+function tips(){
+    myOutput="";
+    var percent;
+    var amount=document.getElementById("form1_amount").value;
+    var tip= parseFloat(document.getElementById("form1_tip").value);
+    for(var i=0;i<5;i++) {       
+        var tip1=(tip+(i*4));
+        percent=(tip1*amount)/100;
+        myOutput +=tip1+"% "+" is "+ percent+";";   
+    }   
+    document.getElementById("calculation").innerHTML = "Tips are: "+ myOutput;
+   }
+ </script>  
+ <script>
+    function chooseOp(){
+        var amount = (document.getElementById("form1_amount").value);
+        var tip = (document.getElementById("form1_tip").value);
+        var selectOperation = document.querySelector('input[name="operation"]:checked').value;
+        var result;
+        switch (selectOperation) {
+            case "sum":
+                result = amount -(-tip);
+                //since I am using -(-tip) when I am directly adding the result it is adding like string so I did -*-=+.
+                break;
+            case "difference":
+                result = amount - tip;
+                break;
+            case "product":
+                result = amount * tip;
+                break;
+            default:
+                result = "Invalid operation";
+                break;
+            }
+            document.getElementById("result").innerHTML = `${selectOperation} of ${amount} and ${tip} is ${result}`;
+            }
+ </script>      
 </body>
 </html> 

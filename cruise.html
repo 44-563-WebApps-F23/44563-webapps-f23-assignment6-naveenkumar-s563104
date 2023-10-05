@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fun around the sea</title>
+    </head> 
+<body>
+<h2>Kottidi Naveen Kumar_goes on cruise</h2>
+<form>
+    <input type="checkbox" id="SharesCabin" name="SharesCabin”" value="yes">  
+    <label for="SharesCabin"> Shares Cabin </label><br>
+    <input type="checkbox" id="Breakfast" name="Breakfast" value="yes">  
+    <label for="Breakfast"> Breakfast </label><br>
+    <input type="checkbox" id="PoolPass" name="PoolPass" value="false">  
+    <label for="PoolPass"> Pool Pass </label><br>
+    <input type="button" value="Select a cruise" onclick="selectCruise()">
+    <p id="result">result </p>
+
+</form> 
+<form>
+    <label for="days">Enter the number of the days </label>
+    <input type ="text" id="days" name="form1_days"  value="days"> 
+    <br>
+    <br>
+    <label for="price">Enter the price </label>
+    <input type ="text" id="price" name="form1_price" value="price"> <br>
+    <br>
+    <button type="button" onclick="updateCruise()" >update the cruise</button><br>
+  
+</form>
+
+
+<script> 
+let my_cruise={};
+function selectCruise(){
+    my_cruise={};
+
+    var checkBoxSharesCabin = document.getElementById("SharesCabin");    
+    var checkBoxBreakfast = document.getElementById("Breakfast");    
+    var checkBoxPoolPass = document.getElementById("PoolPass");
+   
+    my_cruise.SharesCabin = checkBoxSharesCabin.checked;
+    my_cruise.Breakfast= checkBoxBreakfast.checked;
+    my_cruise.PoolPass = checkBoxPoolPass.checked;
+    document.getElementById("result").innerHTML = JSON.stringify(my_cruise);
+    
+}
+</script>
+<script>
+function updateCruise(){
+    days= document.getElementById("days").value;
+    price= document.getElementById("price").value;
+    my_cruise["days"]=days;
+    my_cruise["price"]=price;
+    document.getElementById("result").innerHTML = JSON.stringify(my_cruise)
+
+}
+</script>
+</script>
+
+</body>
+</html> 
